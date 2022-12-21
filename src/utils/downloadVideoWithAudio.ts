@@ -54,6 +54,9 @@ export default async function downloadVideoWithAudio(
       "copy",
       "-c:a",
       "aac",
+      // support quicktime
+      "-pix_fmt",
+      "yuv420p",
       // Define output container
       "-f",
       "matroska",

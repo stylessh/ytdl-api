@@ -170,6 +170,9 @@ export const download = async (req: Request, res: Response) => {
           "copy",
           "-c:a",
           "copy",
+          // support quicktime
+          "-pix_fmt",
+          "yuv420p",
           // Define output container
           "-f",
           "matroska",
