@@ -9,6 +9,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "https://yt-downloader-jet.vercel.app",
+  "http://www.slicetube.io"
 ];
 
 // settings
