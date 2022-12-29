@@ -35,6 +35,9 @@ export default async function downloadVideoWithAudio(
   const video = ytdl(data.url, { format: videoFormat });
   const audio = ytdl(data.url, { format: audioFormat });
 
+  // set content length
+  res.setHeader("Content-Length", videoFormat.contentLength);
+
   const ffmpegProcess = cp.spawn(
     ffmpeg || "d:\\ffmpeg\\bin\\ffmpeg.exe",
     [

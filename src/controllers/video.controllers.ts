@@ -43,6 +43,9 @@ export const download = async (req: Request, res: Response) => {
 
     const audio = ytdl(url, { format: audioFormat });
 
+    // set content length
+    res.setHeader("Content-Length", audioFormat.contentLength);
+    
     // if trim is set then trim the audio
     if (trim) {
       const ffmpegProcess = cp.spawn(
@@ -147,6 +150,9 @@ export const download = async (req: Request, res: Response) => {
     const format = ytdl.chooseFormat(info.formats, { quality: quality });
 
     const video = ytdl(url, { format });
+
+    // set content length
+    res.setHeader("Content-Length", format.contentLength);
 
     // if trim is set then trim the video
     if (trim) {
