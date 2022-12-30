@@ -9,7 +9,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "https://yt-downloader-jet.vercel.app",
-  "https://www.slicetube.io"
+  "https://www.slicetube.io",
 ];
 
 // settings
@@ -31,7 +31,19 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-app.use(express.json());
+app.use(
+  express.json({
+    limit: "5000mb",
+  })
+);
+// url enconded
+app.use(
+  express.urlencoded({
+    limit: "5000mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 
 // routes
 app.use("/api/video", videoRoutes);
