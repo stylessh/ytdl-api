@@ -83,8 +83,9 @@ export default async function downloadVideoWithAudio(
     process.stdout.write("\n");
   });
 
-  // return video and audio to client
-  res.status(200);
+  ffmpegProcess.on("error", (err) => {
+    console.log(err);
+  });
 
   audio.pipe(ffmpegProcess.stdio[3] as any);
   video.pipe(ffmpegProcess.stdio[4] as any);
