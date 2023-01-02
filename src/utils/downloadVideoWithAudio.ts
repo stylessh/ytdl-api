@@ -84,7 +84,7 @@ export default async function downloadVideoWithAudio(
   });
 
   ffmpegProcess.on("error", (err) => {
-    console.log(err);
+    console.log("Error stack: ", err.stack);
   });
 
   audio.pipe(ffmpegProcess.stdio[3] as any);

@@ -94,7 +94,7 @@ export const download = async (req: Request, res: Response) => {
       });
 
       ffmpegProcess.on("error", (err) => {
-        console.log(err);
+        console.log("Error stack: ", err.stack);
       });
 
       audio.pipe(ffmpegProcess.stdio[3] as any);
@@ -142,7 +142,7 @@ export const download = async (req: Request, res: Response) => {
       });
 
       ffmpegProcess.on("error", (err) => {
-        console.log(err);
+        console.log("Error stack: ", err.stack);
       });
 
       audio.pipe(ffmpegProcess.stdio[3] as any);
@@ -211,7 +211,7 @@ export const download = async (req: Request, res: Response) => {
       });
 
       ffmpegProcess.on("error", (err) => {
-        console.log(err);
+        console.log("Error stack: ", err.stack);
       });
 
       video.pipe(ffmpegProcess.stdio[3] as any);
