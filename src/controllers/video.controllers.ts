@@ -146,7 +146,9 @@ export const download = async (req: Request, res: Response) => {
       });
 
       audio.pipe(ffmpegProcess.stdio[3] as any);
-      ffmpegProcess.stdio[4]?.pipe(res);
+      ffmpegProcess.stdio[4]?.pipe(res, {
+        end: true,
+      });
     }
   }
 
@@ -215,10 +217,14 @@ export const download = async (req: Request, res: Response) => {
       });
 
       video.pipe(ffmpegProcess.stdio[3] as any);
-      ffmpegProcess.stdio[4]?.pipe(res);
+      ffmpegProcess.stdio[4]?.pipe(res, {
+        end: true,
+      });
     } else {
       // if trim is not set then just download the video
-      video.pipe(res);
+      video.pipe(res, {
+        end: true,
+      });
     }
   } else if (!isAudio && quality !== 18) {
     // download video with audio
