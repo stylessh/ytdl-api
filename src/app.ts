@@ -31,7 +31,7 @@ app.use(
   })
 );
 
-app.use(morgan("dev"));
+app.use(morgan("short"));
 
 app.use(
   express.json({

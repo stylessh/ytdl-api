@@ -32,8 +32,8 @@ export default async function downloadVideoWithAudio(
   });
 
   //   download video and audio and merge them into one file using ffmpeg
-  const video = ytdl(data.url, { format: videoFormat });
-  const audio = ytdl(data.url, { format: audioFormat });
+  const video = ytdl(data.url, { format: videoFormat, highWaterMark: 1 << 25  });
+  const audio = ytdl(data.url, { format: audioFormat, highWaterMark: 1 << 25  });
 
   // set content length
   res.setHeader("Content-Length", videoFormat.contentLength);

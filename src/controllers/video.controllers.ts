@@ -23,6 +23,10 @@ export const download = async (req: Request, res: Response) => {
 
   const isAudio = audioTags.includes(quality || 0);
 
+  res.on("error", (err) => {
+    console.log("Error stack: ", err.stack);
+  });
+
   // set headers based of format mp3/mp4
   if (isAudio) {
     res.setHeader("Content-Disposition", `attachment; filename="audio.mp3"`);
