@@ -27,7 +27,7 @@ export default async function downloadVideoWithAudio(
 
   //  get highest quality audio
   const audioFormat = ytdl.chooseFormat(info.formats, {
-    quality: "highestaudio",
+    quality: "lowestaudio",
     filter: "audioonly",
   });
 

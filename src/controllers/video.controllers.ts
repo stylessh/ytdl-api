@@ -37,7 +37,7 @@ export const download = async (req: Request, res: Response) => {
     const info = await ytdl.getInfo(url);
 
     const audioFormat = ytdl.chooseFormat(info.formats, {
-      quality: "highestaudio",
+      quality: "lowestaudio",
       filter: "audioonly",
     });
 
