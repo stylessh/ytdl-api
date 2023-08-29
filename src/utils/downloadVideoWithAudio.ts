@@ -87,6 +87,14 @@ export default async function downloadVideoWithAudio(
     console.log("Error stack: ", err.stack);
   });
 
+  video.on("error", (err) => {
+    console.log("Error stack: ", err.stack);
+  });
+
+  audio.on("error", (err) => {
+    console.log("Error stack: ", err.stack);
+  });
+
   audio.pipe(ffmpegProcess.stdio[3] as any);
   video.pipe(ffmpegProcess.stdio[4] as any);
 

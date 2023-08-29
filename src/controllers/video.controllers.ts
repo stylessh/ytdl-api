@@ -97,6 +97,10 @@ export const download = async (req: Request, res: Response) => {
         console.log("Error stack: ", err.stack);
       });
 
+      audio.on("error", (err) => {
+        console.log("Error stack: ", err.stack);
+      });
+
       audio.pipe(ffmpegProcess.stdio[3] as any);
       ffmpegProcess.stdio[4]?.pipe(res);
     } else {
@@ -145,7 +149,12 @@ export const download = async (req: Request, res: Response) => {
         console.log("Error stack: ", err.stack);
       });
 
+      audio.on("error", (err) => {
+        console.log("Error stack: ", err.stack);
+      })
+
       audio.pipe(ffmpegProcess.stdio[3] as any);
+      
       ffmpegProcess.stdio[4]?.pipe(res, {
         end: true,
       });
@@ -216,11 +225,20 @@ export const download = async (req: Request, res: Response) => {
         console.log("Error stack: ", err.stack);
       });
 
+      video.on("error", (err) => {
+        console.log("Error stack: ", err.stack);
+      });
+
       video.pipe(ffmpegProcess.stdio[3] as any);
+
       ffmpegProcess.stdio[4]?.pipe(res, {
         end: true,
       });
     } else {
+      video.on("error", (err) => {
+        console.log("Error stack: ", err.stack);
+      });
+
       // if trim is not set then just download the video
       video.pipe(res, {
         end: true,
