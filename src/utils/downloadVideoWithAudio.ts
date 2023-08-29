@@ -95,11 +95,16 @@ export default async function downloadVideoWithAudio(
     console.log("Error stack: ", err.stack);
   });
 
+  // @ts-expect-error
+  ffmpegProcess.stdio[5]?.on("error", (err) => {
+    console.log("Error stack: ", err.stack);
+  });
+
   audio.pipe(ffmpegProcess.stdio[3] as any);
   video.pipe(ffmpegProcess.stdio[4] as any);
 
   // ignore error of index
-  // @ts-ignore
+  // @ts-expect-error
   ffmpegProcess.stdio[5]?.pipe(res, {
     end: true,
   });
