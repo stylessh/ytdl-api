@@ -105,7 +105,5 @@ export default async function downloadVideoWithAudio(
 
   // ignore error of index
   // @ts-expect-error
-  ffmpegProcess.stdio[5]?.pipe(res, {
-    end: true,
-  });
+  ffmpegProcess.stdio[5]?.pipe(res);
 }
